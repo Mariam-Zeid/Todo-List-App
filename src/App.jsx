@@ -2,19 +2,24 @@ import { useState } from "react";
 import Stats from "./components/Stats/Stats";
 import TaskForm from "./components/Task Form/TaskForm";
 import TaskList from "./components/Tasks/TaskList";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 export default function App() {
+  // const [tasks, setTasks] = useState(() =>
+  //   localStorage.getItem("todoTasks")
+  //     ? JSON.parse(localStorage.getItem("todoTasks"))
+  //     : []
+  // );
+  
+  const [tasks, setTasks] = useLocalStorage({
+    key: "todoTasks",
+    defaultValue: [],
+  });
   const [task, setTask] = useState({
     description: "",
     isDone: false,
   });
   const [editableId, setEditableId] = useState(null);
-
-  const [tasks, setTasks] = useState(() =>
-    localStorage.getItem("todoTasks")
-      ? JSON.parse(localStorage.getItem("todoTasks"))
-      : []
-  );
 
   const totalTasks = tasks.length;
   const totalCompletedTasks = tasks.filter(
