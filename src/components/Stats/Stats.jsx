@@ -1,4 +1,8 @@
-export default function Stats() {
+export default function Stats({
+  progressPresentage,
+  totalCompletedTasks,
+  totalTasks,
+}) {
   return (
     <div className="stats-container">
       <div className="stats-details">
@@ -7,14 +11,14 @@ export default function Stats() {
         <div className="progress-bar">
           <div
             className="progress"
-            style={{ width: `100%` }}
+            style={{ width: `${progressPresentage}%` }}
           ></div>
         </div>
       </div>
       <div className="stats-numbers">
-        <p>1</p>
+        <p>{totalCompletedTasks}</p>
         <p>/</p>
-        <p>1</p>
+        <p>{totalTasks}</p>
       </div>
     </div>
   );
