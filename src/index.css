@@ -1,0 +1,254 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+:root {
+  --background: #000430;
+  --secondaryBackground: #171c48;
+  --text: #fff;
+  --purple: #828dff;
+  --teal: #24feee;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: var(--secondaryBackground);
+  color: var(--text);
+  font-family: "Nunito", sans-serif;
+  min-height: 100vh;
+  display: grid;
+}
+.container {
+  width: 90%;
+  margin-inline: auto;
+  margin-top: 1.875rem;
+  background-color: var(--background);
+  padding: 1.8rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+}
+
+/* ?======================= Stats Container ======================= */
+.stats-container {
+  border-radius: 10px;
+  border: 2px solid var(--purple);
+  padding: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.875rem;
+}
+.stats-details {
+  width: 100%;
+}
+.stats-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  margin-bottom: 0.625rem;
+}
+.progress-bar {
+  width: 100%;
+  height: 0.625rem;
+  border-radius: 0.625rem;
+  background-color: var(--secondaryBackground);
+  margin-top: 1.25rem;
+}
+.progress {
+  width: 30%;
+  height: 0.625rem;
+  background-color: var(--teal);
+  border-radius: 0.625rem;
+  transition: all 0.3s ease;
+}
+.stats-numbers {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  background-color: var(--purple);
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  flex-shrink: 0;
+}
+
+/* ?======================= Task Form ======================= */
+.task-form {
+  margin-top: 1.9rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.task-input {
+  outline: none;
+  font-size: 1rem;
+  color: var(--text);
+  background-color: var(--secondaryBackground);
+  border: 1px solid var(--purple);
+  border-radius: 0.4rem;
+  width: 100%;
+  flex: 1;
+  padding: 0.5rem;
+}
+.add-btn {
+  border: none;
+  outline: none;
+  background-color: var(--purple);
+  color: var(--text);
+  font-size: 1.5625rem;
+  font-weight: 500;
+  cursor: pointer;
+  width: 1.875rem;
+  height: 1.875rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+/* ?======================= Task List ======================= */
+.task-list {
+  margin-top: 1.875rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin-top: 3rem;
+}
+.empty-list {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  text-align: center;
+}
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  background-color: var(--secondaryBackground);
+  border: 1px solid var(--purple);
+  padding: 0.5rem;
+  border-radius: 0.625rem;
+}
+.task {
+  display: flex;
+  align-items: center;
+  gap: 0.9375rem;
+  width: 100%;
+}
+.task-checkbox-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.task-checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+}
+.task-label {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--purple);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+  background-color: transparent;
+}
+.task-checkbox:checked + .task-label {
+  background-color: var(--teal);
+  border-color: var(--teal);
+}
+.task-checkbox:checked + .task-label::after {
+  content: "✓";
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+.task.checked .task-text {
+  text-decoration: line-through;
+}
+.task-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Number of lines you want to show */
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  max-width: 100%;
+}
+.icons-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.icons-container > * {
+  cursor: pointer;
+  font-size: 1rem;
+}
+.edit-icon {
+  color: var(--purple);
+}
+.delete-icon {
+  color: rgb(175, 58, 58);
+}
+/* ?======================= Media Queries ======================= */
+
+@media screen and (min-width: 768px) {
+  body {
+    place-content: center;
+  }
+  .container {
+    width: 700px;
+    padding: 2.5rem;
+    margin-top: 0;
+  }
+  .stats-container {
+    padding: 1.875rem;
+  }
+  .stats-title {
+    font-size: 2.1875rem;
+  }
+  .stats-text {
+    font-size: 1.25rem;
+  }
+  .stats-numbers {
+    width: 6.25rem;
+    height: 6.25rem;
+    font-size: 1.875rem;
+  }
+  .task-form {
+    margin-top: 3.125rem;
+  }
+  .task-input {
+    font-size: 1.2rem;
+    padding: 1rem;
+    border-radius: 0.7rem;
+  }
+  .add-btn {
+    font-size: 1.875rem;
+    width: 3.125rem;
+    height: 3.125rem;
+  }
+  .task-list {
+    margin-top: 4rem;
+  }
+  .task-item {
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+  .icons-container > * {
+    font-size: 1.2rem;
+  }
+}
