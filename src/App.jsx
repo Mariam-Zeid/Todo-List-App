@@ -10,7 +10,7 @@ export default function App() {
   //     ? JSON.parse(localStorage.getItem("todoTasks"))
   //     : []
   // );
-  
+
   const [tasks, setTasks] = useLocalStorage({
     key: "todoTasks",
     defaultValue: [],
@@ -28,10 +28,8 @@ export default function App() {
   const progressPresentage = (totalCompletedTasks / totalTasks) * 100 || 0;
 
   // new state depends on the current state (CallbackFn)
-  const handleAddTask = (newTask) => {
+  const handleAddTask = (newTask) =>
     setTasks((prevTasks) => [...prevTasks, newTask]);
-    localStorage.setItem("todoTasks", JSON.stringify([...tasks, newTask]));
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,14 +37,11 @@ export default function App() {
 
     if (editableId !== null) {
       // Fix: Ensure we're checking if editableId is not null instead of truthy check
-      setTasks((prevTasks) => {
-        const updatedTasks = prevTasks.map((prevTask, index) =>
+      setTasks((prevTasks) =>
+        prevTasks.map((prevTask, index) =>
           index === editableId ? { ...prevTask, ...task } : prevTask
-        );
-        console.log(updatedTasks);
-        localStorage.setItem("todoTasks", JSON.stringify(updatedTasks));
-        return updatedTasks;
-      });
+        )
+      );
       // Clear edit mode after successful edit
       setEditableId(null);
     } else {
@@ -64,13 +59,11 @@ export default function App() {
   };
 
   const handleTaskStatus = (index) => {
-    setTasks((prevTasks) => {
-      const updatedTasks = prevTasks.map((task, i) =>
+    setTasks((prevTasks) =>
+      prevTasks.map((task, i) =>
         i === index ? { ...task, isDone: !task.isDone } : task
-      );
-      localStorage.setItem("todoTasks", JSON.stringify(updatedTasks));
-      return updatedTasks;
-    });
+      )
+    );
   };
 
   const handleEditTask = (index) => {
@@ -80,11 +73,7 @@ export default function App() {
   };
 
   const handleDeleteTask = (index) => {
-    setTasks((prevTasks) => {
-      const filteredTasks = prevTasks.filter((_, i) => i !== index);
-      localStorage.setItem("todoTasks", JSON.stringify(filteredTasks));
-      return filteredTasks;
-    });
+    setTasks((prevTasks) => prevTasks.filter((_, i) => i !== index));
 
     // If we're deleting the task we're currently editing, reset edit mode
     if (editableId === index) {
